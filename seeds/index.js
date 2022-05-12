@@ -22,9 +22,13 @@ const seedDB = async () => {
     await Campground.deleteMany({});
     for (let i = 0; i < 50; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
+        const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
-            title: `${sample(descriptors)} ${sample(places)}`
+            title: `${sample(descriptors)} ${sample(places)}`,
+            image: 'https://source.unsplash.com/collection/483251',
+            description: 'A few clumsy towers in the Ginger Bread Man briskly ate a couple dazzling princes. The fast princess rather goes a couple wonderful Dumbos. Dumbos of the horses happily showed a Cinderella. Those Rapunzels wishfully eat a witty Rapunzel. A beautiful Fairy God Mother never saw a curse. A Snow White happily sees princesses. Some fast fairies really cook those delightful towers.',
+            price: price
         })
         await camp.save();
     }
