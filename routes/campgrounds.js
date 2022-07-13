@@ -4,17 +4,16 @@ const campgrounds = require('../controllers/campgrounds');
 const catchAsync = require('../utils/catchAsync');
 const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
 
 const Campground = require('../models/campground');
 
 router.route('/')
     .get(catchAsync(campgrounds.index))
     //.post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground))
-    // Using the single upload middleware linking to the HTML input field using the name 'image'
     .post(upload.single('image'), (req, res) =>
     {
-        // Accessing the body of the requests, and the file uploaded onto the request
         console.log(req.body, req.file);
         res.send("It worked");
     })
