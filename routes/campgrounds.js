@@ -3,12 +3,21 @@ const router = express.Router();
 const campgrounds = require('../controllers/campgrounds');
 const catchAsync = require('../utils/catchAsync');
 const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const Campground = require('../models/campground');
 
 router.route('/')
     .get(catchAsync(campgrounds.index))
-    .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground))
+    //.post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground))
+    // Using the single upload middleware linking to the HTML input field using the name 'image'
+    .post(upload.single('image'), (req, res) =>
+    {
+        // Accessing the body of the requests, and the file uploaded onto the request
+        console.log(req.body, req.file);
+        res.send("It worked");
+    })
 
 router.get('/new', isLoggedIn, campgrounds.renderNewForm)
 
@@ -18,7 +27,5 @@ router.route('/:id')
     .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm))
-
-
 
 module.exports = router;
