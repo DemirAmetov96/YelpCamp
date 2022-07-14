@@ -27,9 +27,22 @@ const seedDB = async () => {
             author: '62c069045dd8933d723ddb59',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://source.unsplash.com/collection/483251',
             description: 'A few clumsy towers in the Ginger Bread Man briskly ate a couple dazzling princes. The fast princess rather goes a couple wonderful Dumbos. Dumbos of the horses happily showed a Cinderella. Those Rapunzels wishfully eat a witty Rapunzel. A beautiful Fairy God Mother never saw a curse. A Snow White happily sees princesses. Some fast fairies really cook those delightful towers.',
-            price: price
+            price: price,
+            images: [
+                {
+                  url: 'https://res.cloudinary.com/dqfemxdwd/image/upload/v1657803413/YelpCamp/sahxtv50mlr2wcmyceio.jpg',
+                  filename: 'YelpCamp/sahxtv50mlr2wcmyceio'
+                },
+                {
+                  url: 'https://res.cloudinary.com/dqfemxdwd/image/upload/v1657803415/YelpCamp/a4xskgpfr4wf0lftkjqx.jpg',
+                  filename: 'YelpCamp/a4xskgpfr4wf0lftkjqx'
+                },
+                {
+                  url: 'https://res.cloudinary.com/dqfemxdwd/image/upload/v1657803416/YelpCamp/nfkijwu80envypgdjjap.jpg',
+                  filename: 'YelpCamp/nfkijwu80envypgdjjap'
+                }
+              ]
         })
         await camp.save();
     }
