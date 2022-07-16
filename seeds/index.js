@@ -15,7 +15,6 @@ db.once("open", () => {
     console.log("Database connected");
 });
 
-// Use this to help generate random positions in the array
 const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
@@ -24,31 +23,31 @@ const seedDB = async () => {
         const random1000 = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
-            author: '62c069045dd8933d723ddb59',
+            //YOUR USER ID
+            author: '5f5c330c2cd79d538f2c66d9',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            description: 'A few clumsy towers in the Ginger Bread Man briskly ate a couple dazzling princes. The fast princess rather goes a couple wonderful Dumbos. Dumbos of the horses happily showed a Cinderella. Those Rapunzels wishfully eat a witty Rapunzel. A beautiful Fairy God Mother never saw a curse. A Snow White happily sees princesses. Some fast fairies really cook those delightful towers.',
-            price: price,
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+            price,
+            geometry: {
+                type: "Point",
+                coordinates: [-113.1331, 47.0202]
+            },
             images: [
                 {
-                  url: 'https://res.cloudinary.com/dqfemxdwd/image/upload/v1657803413/YelpCamp/sahxtv50mlr2wcmyceio.jpg',
-                  filename: 'YelpCamp/sahxtv50mlr2wcmyceio'
+                    url: 'https://res.cloudinary.com/douqbebwk/image/upload/v1600060601/YelpCamp/ahfnenvca4tha00h2ubt.png',
+                    filename: 'YelpCamp/ahfnenvca4tha00h2ubt'
                 },
                 {
-                  url: 'https://res.cloudinary.com/dqfemxdwd/image/upload/v1657803415/YelpCamp/a4xskgpfr4wf0lftkjqx.jpg',
-                  filename: 'YelpCamp/a4xskgpfr4wf0lftkjqx'
-                },
-                {
-                  url: 'https://res.cloudinary.com/dqfemxdwd/image/upload/v1657803416/YelpCamp/nfkijwu80envypgdjjap.jpg',
-                  filename: 'YelpCamp/nfkijwu80envypgdjjap'
+                    url: 'https://res.cloudinary.com/douqbebwk/image/upload/v1600060601/YelpCamp/ruyoaxgf72nzpi4y6cdi.png',
+                    filename: 'YelpCamp/ruyoaxgf72nzpi4y6cdi'
                 }
-              ]
+            ]
         })
         await camp.save();
     }
 }
 
 seedDB().then(() => {
-    console.log('Database seeded');
     mongoose.connection.close();
 })
