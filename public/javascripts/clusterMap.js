@@ -35,9 +35,9 @@ map.on('load', () => {
                 'step',
                 ['get', 'point_count'],
                 '#51bbd6',
-                100,
+                10,
                 '#f1f075',
-                750,
+                30,
                 '#f28cb1'
             ],
             'circle-radius': [
